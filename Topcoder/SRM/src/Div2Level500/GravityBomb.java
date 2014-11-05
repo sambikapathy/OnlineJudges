@@ -1,4 +1,4 @@
-package Div2Level500;
+package div2Level500;
 
 /*
  * Tetris is one of those games that is everywhere; there aren't too many people who haven't seen it in some form or another since its conception in 1985. The concept is fairly simple. You have a vertically-oriented rectangular grid. Pieces, which are made up of some number of 1x1 blocks, fall downwards. Whenever an entire row of the grid is full of blocks, all of the blocks in that row disappear and all the pieces above are shifted downwards by a row.

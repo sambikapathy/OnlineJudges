@@ -1,4 +1,4 @@
-package Div2Level250;
+package div2Level250;
 
 import java.util.ArrayList;
 import java.util.List;
