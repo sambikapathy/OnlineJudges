@@ -1,5 +1,7 @@
 package problems;
 
+import java.util.ArrayList;
+
 
 
 public class Permutations {
@@ -18,9 +20,22 @@ public class Permutations {
 		//prefix+=input.charAt(location);
 		//printPerm(prefix, input, location+1);
 	}
+
+	
+	ArrayList<String> q = new ArrayList<String>();
+	
+	public static void printP1(String input){
+		for(int i=0;i<input.length();i++){
+			char c = input.charAt(i);
+//			for(){
+//				
+//			}
+		}
+	}
+	
 	public static void main(String[] args) {
 		
-		String input = "1234567890";
+		String input = "abc";
 		printPerm("", input);
 		
 	}

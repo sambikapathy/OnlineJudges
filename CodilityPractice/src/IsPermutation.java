@@ -1,6 +1,7 @@
 
 public class IsPermutation {
 
+	//BitSet should be used instead of int array
 	public int solution(int[] A) {
 		int []occ = new int[A.length];
 		for(int i : A){

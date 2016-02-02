@@ -11,6 +11,7 @@ public class LongestIncreasingSubsequence {
 				if(input[i] > input[j]){
 					if(max[j]+1 > count){
 						count = max[j]+1;
+						
 					}
 				}
 			}

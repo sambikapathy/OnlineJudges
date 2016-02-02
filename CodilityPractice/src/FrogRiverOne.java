@@ -1,6 +1,7 @@
 
 public class FrogRiverOne {
 
+	//Use BitSet rather than integer array
 	 public int solution(int X, int[] A) {
 		 int []time = new int[A.length];
 		 int count = 0,sec=0;

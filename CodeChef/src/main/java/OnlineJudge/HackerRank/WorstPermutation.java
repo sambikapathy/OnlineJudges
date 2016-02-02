@@ -12,21 +12,22 @@ public class WorstPermutation {
 		for (int i = 0; i < n; i++) {
 			array[i] = in.nextInt();
 		}
-		for(int i=0;i<(k<n?k:n);i++){
+		int swaps = 0;
+		int maxSwaps = (k<n?k:n);
+		for(int i=0; i<n && swaps < maxSwaps;i++){
 			int value = array[i];
-			boolean isDone = false;
 			int tempMax = value;
 			int index = 0;
 			for(int j=i+1;j<n;j++){
 				if(array[j] > tempMax){
 					tempMax = array[j];
 					index = j;
-					isDone = true;
 				}
 			}
-			if(isDone && (tempMax > value)){
+			if( (tempMax > value)){
 				array[index] = array[i];
 				array[i] = tempMax;
+				swaps++;
 			}else{
 				//break;
 			}
