@@ -11,14 +11,3 @@ robot to go from (0, 0) to (X, Y) ?
 }
 
 
-/*
-Tasks:
-Go through the resume and prepare for things in it
-prepare for behavioral questions
-prepare for other things like OS , n/w , spring , java , unit tests?
-go through data structures and algorithm list and the drive in general to look for things that might have been missed 
- 
- 
- how to recognize a greedy problem
- 
- */

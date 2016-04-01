@@ -445,7 +445,10 @@ public class SinglyLinkedList {
 	5
 	\
 	
-	6*/
+	6
+	*/
+	//Add and Search Word Data structure design
+	
 	private Node partitionList(Node first , int x){
 		
 		Node<Integer> great = new Node(0);
