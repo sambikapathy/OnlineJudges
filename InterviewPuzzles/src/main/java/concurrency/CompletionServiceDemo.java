@@ -2,13 +2,14 @@ package concurrency;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletionService;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.Executors;
 
 
 public class CompletionServiceDemo {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ExecutionException {
 		
 		CompletionService<String> c = new ExecutorCompletionService(Executors.newFixedThreadPool(2));
 		
@@ -19,7 +20,7 @@ public class CompletionServiceDemo {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		c.shutdown();
+//		c.shutdown();
 	}
 	
 	static class Worker implements Callable<String>{

@@ -420,35 +420,6 @@ public class SinglyLinkedList {
 		return temp;
 	}
 
-	//For example, Given 1->4->3->2->5->2 and x = 3, return 1->2->2->4->3->5.
-	//SRINI
-	//Partition
-	//LRU cache using both DLL and HashMap + MinHeap combo
-	//inorder , pre order and post order iterative
-	//level oder traversal like {[1] , [2,3] , [4,5,6,7]}
-	//Bottom up level order traversal
-	//flatten a tree to a list
-	/*1
-	/ \
-	2 5
-	/ \ \
-	3 4 6
-	The flattened tree should look like:
-	1
-	\
-	2
-	\
-	3
-	\
-	4
-	\
-	5
-	\
-	
-	6
-	*/
-	//Add and Search Word Data structure design
-	
 	private Node partitionList(Node first , int x){
 		
 		Node<Integer> great = new Node(0);

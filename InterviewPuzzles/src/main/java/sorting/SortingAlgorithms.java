@@ -96,9 +96,9 @@ public class SortingAlgorithms {
 		int p = input[(l+r)/2];
 		swap(input , p , r);
 		while(l < r-1){
-			if(){
-				
-			}
+//			if(){
+//				
+//			}
 		}
 		return 0;
 	}
