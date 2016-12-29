@@ -1,5 +1,8 @@
 package Graphs;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class Graph {
 
 	int [][] matrix;
@@ -34,4 +37,25 @@ public class Graph {
 		int v = 4;
 		createGraph(v, input).print();
 	}
+	
+	public String largestNumber(int[] nums) {
+        StringBuilder sb = new StringBuilder();
+        for(int i: nums){
+            sb.append(i);
+        }
+        return sb.toString();
+    }
+    
+    static class CComparator implements Comparator<Integer>{
+ 
+
+	@Override
+	public int compare(Integer one, Integer two) {
+		int i = Integer.parseInt(one+""+two);
+		int j = Integer.parseInt(two+""+one);
+		
+		return i-j;
+	}
+}
+ 
 }

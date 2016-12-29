@@ -35,15 +35,52 @@ public class SnakesandLaddersTheQuickestWayUp {
 77 21
 	 */
 	public static void main(String[] args) {
+		dp1();
+	}
+	
+	public static void dp1(){
 		Scanner in = new Scanner(System.in);
 		int t = in.nextInt();
 		for(int i=0;i<t;i++){
-			int [][]input = new int[10][10];
-			int m = in.nextInt();
-			for(int j=0;j<m;j++){
+			int []input = new int[101];
+			int ladder = in.nextInt();
+			for(int j=0;j<ladder;j++){
 				int s = in.nextInt();
 				int e = in.nextInt();
+				input[s] = e;
 			}
+			int snakes = in.nextInt();
+			for(int j=0;j<snakes;j++){
+				int s = in.nextInt();
+				int e = in.nextInt();
+				input[s] = e;
+			}
+			//think of recursion
+			int []output = new int[101];
+			for(int x=2;x<=100;x++){
+				for(int y=1;y<=6;y++){
+					if(x-y>=0 && output[x-y] >= 0){
+						int temp = output[x-y]+1;
+						if(output[x] == 0 || output[x] > temp){
+							output[x] = temp;
+						}
+					}
+				}
+				if(input[x] != 0){
+					//snake vs ladder
+					if(input[x] > x){
+						if(output[input[x]] == 0 || output[input[x]] > output[x]){
+							output[input[x]] = output[x];
+						}
+					}else{
+						output[x] = -1;
+					}
+//					output[x] = 
+				}
+//				System.out.println(x+" "+output[98]);
+			}
+			
+			System.out.println(output[100]);
 		}
 	}
 }

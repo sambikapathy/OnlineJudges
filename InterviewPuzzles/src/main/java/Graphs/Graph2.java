@@ -70,7 +70,8 @@ public class Graph2 {
 			GraphNode temp = q.poll();
 			System.out.println("Visited "+ temp.vertex);
 			isVisited[temp.vertex] = true;
-			while(temp.next != null && !isVisited[temp.next.vertex]){
+			while(temp.next != null){
+				if(!isVisited[temp.next.vertex])
 				q.add(temp.next);
 				temp = temp.next;
 			}
