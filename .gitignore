@@ -35,3 +35,4 @@ target
 .project
 .classpath
 .factorypath
+**/kata/*

@@ -19,6 +19,7 @@ public class SinglyLinkedList {
 		}
 		System.out.println();
 	}
+
 	public void printList(Node temp) {
 		while (temp != null) {
 			System.out.print(temp.data + " -> ");
@@ -110,8 +111,8 @@ public class SinglyLinkedList {
 	}
 
 	public <T> boolean searchIter(Node first, T value) {
-		while(first != null ){
-			if(value == first.data){
+		while (first != null) {
+			if (value == first.data) {
 				return true;
 			}
 			first = first.next;
@@ -120,44 +121,42 @@ public class SinglyLinkedList {
 	}
 
 	public <T> boolean searchRec(Node first, T value) {
-		if(first == null){
+		if (first == null) {
 			return false;
 		}
-		if(first.data == value){
+		if (first.data == value) {
 			return true;
 		}
 		return searchRec(first.next, value);
 	}
 
-	
-	public void getNthNodeFromEnd(Node first , int index){
+	public void getNthNodeFromEnd(Node first, int index) {
 		Node temp = first;
-		for(int i=0;i<index && temp != null;i++){
+		for (int i = 0; i < index && temp != null; i++) {
 			temp = temp.next;
 		}
-		
+
 		Node sec = first;
-		while(temp.next != null){
+		while (temp.next != null) {
 			temp = temp.next;
 			sec = sec.next;
 		}
-		System.out.println(index+" th node from last is "+sec.data);
+		System.out.println(index + " th node from last is " + sec.data);
 	}
-	
-	public void printNthFromLast( Node first, int n) 
-	{
-	     int i = 0;
-	    if(head == null)
-	       return;
-	    printNthFromLast(first.next, n);
-	    if(++i == n)
-	       System.out.println(first.data);
+
+	public void printNthFromLast(Node first, int n) {
+		int i = 0;
+		if (head == null)
+			return;
+		printNthFromLast(first.next, n);
+		if (++i == n)
+			System.out.println(first.data);
 	}
-	
-	public void reverseList(Node first){
+
+	public void reverseList(Node first) {
 		Node temp = first;
 		Node prev = null;
-		while(temp != null){
+		while (temp != null) {
 			Node link = temp.next;
 			temp.next = prev;
 			prev = temp;
@@ -165,19 +164,19 @@ public class SinglyLinkedList {
 		}
 		head = prev;
 	}
-	
-	public void reverseRec(Node first){
-		if(first.next == null){
+
+	public void reverseRec(Node first) {
+		if (first.next == null) {
 			head = first;
 			return;
 		}
 		reverseRec(first.next);
 		first.next.next = first;
 	}
-	
-	//PREP reversing without special case checking
-	public void reverseRec(Node current , Node prev){
-		if(current.next == null){
+
+	// PREP reversing without special case checking
+	public void reverseRec(Node current, Node prev) {
+		if (current.next == null) {
 			head = current;
 			current.next = prev;
 			return;
@@ -185,21 +184,21 @@ public class SinglyLinkedList {
 		Node next = current.next;
 		current.next = prev;
 		reverseRec(next, current);
-		
-		
+
 	}
-	//PREP
+
+	// PREP
 	/*
-	 * 1) Hashing : store memory address and return true 
-	 * 2) Modify node to contain a visited attribute
-	 * 3) Floyd's cycle finding algorithm : two pointers
+	 * 1) Hashing : store memory address and return true 2) Modify node to
+	 * contain a visited attribute 3) Floyd's cycle finding algorithm : two
+	 * pointers
 	 */
-	public boolean isThereLoop(Node current){
+	public boolean isThereLoop(Node current) {
 		Node one = current;
 		Node two = current.next;
-		
-		while(two.next != null){
-			if(one == two){
+
+		while (two.next != null) {
+			if (one == two) {
 				return true;
 			}
 			one = one.next;
@@ -207,152 +206,153 @@ public class SinglyLinkedList {
 		}
 		return false;
 	}
-	
-	//PREP
-	/*1) Stack: store the values in stack
-	 *2) Get middle of list. Reverse second half of list. See whether list are identical. Reverse and reattach the second half to first
-	 *3) Recursion.
+
+	// PREP
+	/*
+	 * 1) Stack: store the values in stack 2) Get middle of list. Reverse second
+	 * half of list. See whether list are identical. Reverse and reattach the
+	 * second half to first 3) Recursion.
 	 */
-	
-	private  Node palinTemp ;
-	public boolean isPalindrome(Node last){
+
+	private Node palinTemp;
+
+	public boolean isPalindrome(Node last) {
 		// 1 - 2 - 3 - 2 - 1
-		if(last== null){
+		if (last == null) {
 			return true;
 		}
-		if(!isPalindrome( last.next)){
+		if (!isPalindrome(last.next)) {
 			return false;
 		}
-		
+
 		boolean result = palinTemp.data == last.data;
 		palinTemp = palinTemp.next;
 		return result;
-		
+
 	}
-	
-	public void insert(Node first , int value){
+
+	public void insert(Node first, int value) {
 		Node insertNode = new Node(value);
 		Node current = first;
 		Node prev = null;
-		while(current != null && ((Integer)current.data) < value){
+		while (current != null && ((Integer) current.data) < value) {
 			prev = current;
 			current = current.next;
 		}
-		if(prev == null){
+		if (prev == null) {
 			insertNode.next = head;
 			head = insertNode;
-		}else{
+		} else {
 			insertNode.next = prev.next;
 			prev.next = insertNode;
 		}
-		
+
 	}
-	
-	public void printReverse(Node first){
-		if(first == null){
+
+	public void printReverse(Node first) {
+		if (first == null) {
 			return;
 		}
 		printReverse(first.next);
 		System.out.println(first.data);
 	}
-	
-	public void removeDuplicates(Node first){
-		if(first == null){
+
+	public void removeDuplicates(Node first) {
+		if (first == null) {
 			return;
 		}
-		int last = (Integer)first.data;
-		
+		int last = (Integer) first.data;
+
 		Node prev = first;
 		first = first.next;
-		while(first != null){
-			int data = (Integer)first.data;
-			if(data == last){
+		while (first != null) {
+			int data = (Integer) first.data;
+			if (data == last) {
 				prev.next = first.next;
 			}
-			last = (Integer)first.data; 
+			last = (Integer) first.data;
 			first = first.next;
 		}
 	}
-	
-	public void pairSwapIter(Node first){
+
+	public void pairSwapIter(Node first) {
 		Node one = first;
 		Node two = first.next;
-		while(one != null && two != null){
+		while (one != null && two != null) {
 			Object t1 = one.data;
 			one.data = two.data;
 			two.data = t1;
-			
+
 			one = two.next;
 			two = one.next;
 		}
 	}
-	
-	public void moveToFront(Node first){
+
+	public void moveToFront(Node first) {
 		Node prev = null;
-		while(first.next != null){
+		while (first.next != null) {
 			prev = first;
 			first = first.next;
 		}
 		prev.next = null;
 		first.next = head;
 		head = first;
-		
+
 	}
-	
-	//PREP good recursion
-	public void sortedIntersectionRec(Node first , Node second){
-		
+
+	// PREP good recursion
+	public void sortedIntersectionRec(Node first, Node second) {
+
 	}
-	
-	public void deleteAlternateNodesRec(Node first){
-		if(first == null || first.next == null){
+
+	public void deleteAlternateNodesRec(Node first) {
+		if (first == null || first.next == null) {
 			return;
 		}
-		
+
 		Node temp = first;
-		
+
 		first.next = first.next.next;
 		deleteAlternateNodesRec(first.next);
 	}
-	
-	//PREP recursion
-	public Node mergeRec(Node a , Node b){
+
+	// PREP recursion
+	public Node mergeRec(Node a, Node b) {
 		Node temp = null;
-		if(a == null){
+		if (a == null) {
 			return b;
 		}
-		if(b==null){
+		if (b == null) {
 			return a;
 		}
-		
-		if((Integer)a.data <= (Integer)b.data){
+
+		if ((Integer) a.data <= (Integer) b.data) {
 			temp = a;
 			temp.next = mergeRec(a.next, b);
-		}else if((Integer)a.data > (Integer)b.data){
+		} else if ((Integer) a.data > (Integer) b.data) {
 			temp = b;
 			temp.next = mergeRec(a, b.next);
 		}
 		return temp;
 	}
-	
-	
-	//PREP merge sort
-	
-	public void mergeSort(Node first){
-		if(first == null || first.next == null){
+
+	// PREP merge sort
+
+	public void mergeSort(Node first) {
+		if (first == null || first.next == null) {
 			return;
 		}
 	}
-	
-	//PREP revisit for simpler recursion logic 
-	//1 - 2 - 3 - 4 - 5
+
+	// PREP revisit for simpler recursion logic
+	// 1 - 2 - 3 - 4 - 5
 	public Node reverseInGroup(Node first, int k) {
 		int count = 0;
 		Node temp = first;
 		Node next = null;
 		Node prev = null;
 		while (count < k && temp != null) {
-			 next = temp.next;
+			next = temp.next;
 			temp.next = prev;
 			prev = temp;
 			temp = next;
@@ -364,32 +364,32 @@ public class SinglyLinkedList {
 		}
 		return prev;
 	}
-	
-	//PREP move all odd numbers to the end.
-	//Input: 17->15->8->12->10->5->4->1->7->6->NULL
-    //Output: 8->12->10->4->6->17->15->5->1->7->NULL
-	public void segregate(Node first){
+
+	// PREP move all odd numbers to the end.
+	// Input: 17->15->8->12->10->5->4->1->7->6->NULL
+	// Output: 8->12->10->4->6->17->15->5->1->7->NULL
+	public void segregate(Node first) {
 		Node last = findLastNode(first);
 		Node newHead = null;
 		Node current = first;
 		Node newLast = last;
-		while( (Integer)current.data %2 != 0 && newLast != current){
+		while ((Integer) current.data % 2 != 0 && newLast != current) {
 			last.next = current;
 			current = current.next;
 			last.next.next = null;
 			last = last.next;
 		}
-		
+
 		// 2 - 3 - 5 - 4-1
-		if((Integer)current.data % 2== 0){
+		if ((Integer) current.data % 2 == 0) {
 			newHead = current;
 			Node prev = null;
-			while(current.next != null && current != newLast.next){
-				if((Integer)current.data %2 == 0){
+			while (current.next != null && current != newLast.next) {
+				if ((Integer) current.data % 2 == 0) {
 					prev = current;
 					current = current.next;
-					
-				}else{
+
+				} else {
 					last.next = current;
 					prev.next = current.next;
 					current = current.next;
@@ -399,110 +399,113 @@ public class SinglyLinkedList {
 				}
 			}
 		}
-		
-		if(newLast != last && (Integer)newLast.data %2 !=0){
+
+		if (newLast != last && (Integer) newLast.data % 2 != 0) {
 			last.next = newLast;
 			current = current.next;
 			newLast.next = null;
 		}
-		if(newHead == null)
-		newHead = current;
-		head = newHead;;
+		if (newHead == null)
+			newHead = current;
+		head = newHead;
+		;
 	}
+
 	private Node findLastNode(Node first) {
-		if(first == null || first.next == null){
+		if (first == null || first.next == null) {
 			return first;
 		}
 		Node temp = first;
-		while(temp.next != null){
+		while (temp.next != null) {
 			temp = temp.next;
 		}
 		return temp;
 	}
 
-	private Node partitionList(Node first , int x){
-		
+	private Node partitionList(Node first, int x) {
+
 		Node<Integer> great = new Node(0);
-		Node<Integer>  less = new Node(0);
-		
-		Node<Integer>  p = first;
+		Node<Integer> less = new Node(0);
+
+		Node<Integer> p = first;
 		Node<Integer> g = great;
 		Node<Integer> l = less;
 		Node<Integer> prev = null;
-		
-		while(p != null){
-			if(p.data > x){
+
+		while (p != null) {
+			if (p.data > x) {
 				g.next = p;
-			}else{
-				
+			} else {
+
 			}
 		}
 		return null;
 	}
+
 	public static void main(String[] args) {
-		Integer[] input = {1,2,3 };
-		Integer[] input2 = { 50 , 10, 16, 23, 24, 25 };
+		Integer[] input = { 1, 2, 3 };
+		Integer[] input2 = { 50, 10, 16, 23, 24, 25 };
 
 		SinglyLinkedList list = new SinglyLinkedList(Arrays.asList(input));
 		SinglyLinkedList list2 = new SinglyLinkedList(Arrays.asList(input2));
-//		list.printList();
+		// list.printList();
 
-//		list.insertAtFront(10);
-//		list.printList();
-//
-//		Node nodeAtPosition = list.get(3);
-//
-//		list.insertAfter(nodeAtPosition, 20);
-//		list.printList();
-//
-//		list.insertAtEnd(100);
-//		list.printList();
-//
-//		// DELETE
-//		list.delete(100);
-//		list.delete(10);
-//		list.printList();
-//
-//		System.out.println(list.lengthIter(list.head));
-//
-//		System.out.println(list.lengthRec(list.head));
-//		
-//		list.getNthNodeFromEnd(list.head, 1);
-		
-//		list.reverseList(list.head);
-//		list.printList();
-//		
-//		list.reverseList(list.head);
-//		list.printList();
-//		Node old = list.head;
-//		list.reverseRec(list.head);
-//		old.next = null;
-//		list.printList();
-//		
-//		list.reverseRec(list.head, null);
-//		list.printList();
-//		list.get(3).next = list.get(1);
-//		System.out.println("Is there loop : "+list.isThereLoop(list.head));
-		
-//		list.palinTemp = list.head;
-//		System.out.println(list.isPalindrome(list.head));
-//		list.insert(list.head, 1);
-//		list.printList();
-		
-//		list.printReverse(list.head);
-//		list.removeDuplicates(list.head);
-//		list.printList();
-//		list.pairSwapIter(list.head);
-//		list.moveToFront(list.head);
-//		list.printList();
-		
-//		list.deleteAlternateNodesRec(list.head);
-//		list.mergeRec(list.head, list2.head);
-//		list.printList(list.reverseInGroup(list.head, 2));
-//		list.printList();
-//		list.segregate(list.head);
-//		list.printList();
-		
+		// list.insertAtFront(10);
+		// list.printList();
+		//
+		// Node nodeAtPosition = list.get(3);
+		//
+		// list.insertAfter(nodeAtPosition, 20);
+		// list.printList();
+		//
+		// list.insertAtEnd(100);
+		// list.printList();
+		//
+		// // DELETE
+		// list.delete(100);
+		// list.delete(10);
+		// list.printList();
+		//
+		// System.out.println(list.lengthIter(list.head));
+		//
+		// System.out.println(list.lengthRec(list.head));
+		//
+		// list.getNthNodeFromEnd(list.head, 1);
+
+		// list.reverseList(list.head);
+		// list.printList();
+		//
+		// list.reverseList(list.head);
+		// list.printList();
+		// Node old = list.head;
+		// list.reverseRec(list.head);
+		// old.next = null;
+		// list.printList();`
+		//
+		// list.reverseRec(list.head, null);
+		// list.printList();
+		// list.get(3).next = list.get(1);
+		// System.out.println("Is there loop : "+list.isThereLoop(list.head));
+
+		// list.palinTemp = list.head;
+		// System.out.println(list.isPalindrome(list.head));
+		// list.insert(list.head, 1);
+		// list.printList();
+
+		// list.printReverse(list.head);
+		// list.removeDuplicates(list.head);
+		// list.printList();
+		// list.pairSwapIter(list.head);
+		// list.moveToFront(list.head);
+		// list.printList();
+
+		// list.deleteAlternateNodesRec(list.head);
+		// list.mergeRec(list.head, list2.head);
+		// list.printList(list.reverseInGroup(list.head, 2));
+		// list.printList();
+		// list.segregate(list.head);
+		// list.printList();
+
 		list.printList();
 		list.partitionList(list2.head, 20);
 		list.printList();
@@ -510,7 +513,5 @@ public class SinglyLinkedList {
 
 }
 /*
- * Merge sort
- * segregate list
- * Intersection of two nodes
+ * Merge sort segregate list Intersection of two nodes
  */
