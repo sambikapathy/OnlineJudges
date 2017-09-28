@@ -54,7 +54,7 @@ public class FirstMissingPositive {
 		return max + 1;
 	}
 
-	public int firstMissingPositive(int[] nums) {
+	public int firstMissingPositive3(int[] nums) {
 		if (nums == null || nums.length == 0) {
 			return 1;
 		}
@@ -89,10 +89,29 @@ public class FirstMissingPositive {
 
 	public static void main(String[] args) {
 		// int[] nums = new int[] { 1, 2, 0 };
-		// int[] nums = new int[] { 2, 4, 6 };
-		int[] nums = new int[] { 1 };
+		int[] nums = new int[] { 2, 4, 6 };
+		// int[] nums = new int[] { 1 };
 
 		System.out.println("$" + new FirstMissingPositive().firstMissingPositive(nums));
 		Arrays.stream(nums).forEach(i -> System.out.print(i + " "));
+	}
+
+	private int firstMissingPositive(int[] nums) {
+		for (int i = 0; i < nums.length; i++) {
+			while (nums[i] != i + 1) {
+				if (nums[i] < 0 || nums[i] > nums.length) {
+					break;
+				}
+				int temp = nums[nums[i]];
+				nums[nums[i]] = nums[i];
+				nums[i] = temp;
+			}
+		}
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] != i + 1) {
+				return i + 1;
+			}
+		}
+		return nums.length + 1;
 	}
 }
