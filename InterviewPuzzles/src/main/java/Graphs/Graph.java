@@ -1,61 +1,125 @@
 package Graphs;
 
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 public class Graph {
 
-	int [][] matrix;
-	public Graph(int size){
-		matrix = new int[size][size];
+	GraphNode[] nodes;
+
+	public Graph(int v) {
+		nodes = new GraphNode[v];
 	}
-	
-	public void addEdge(int src , int dest){
-		matrix[src][dest]  = 1;
+
+	private void addEdge(int src, int dest) {
+		GraphNode start = nodes[src];
+		GraphNode end = nodes[dest];
+
+		if (start == null) {
+			start = new GraphNode(src);
+			nodes[src] = start;
+		}
+		if (end == null) {
+			end = new GraphNode(dest);
+			nodes[dest] = end;
+		}
+
+		start.neighbours.add(end);
 	}
-	
-	public void print(){
-		for(int i=0;i<matrix.length;i++){
-			for(int j=0;j<matrix[0].length;j++){
-				System.out.print(matrix[i][j]+" ");
+
+	private void print() {
+		for (int i = 0; i < nodes.length; i++) {
+			GraphNode node = nodes[i];
+			if (node != null) {
+				System.out.println();
 			}
-			System.out.println();
+
 		}
 	}
-	
-	public static Graph createGraph(int v , String input){
-		String []conn = input.split(",");
+
+	public void dfs(int v, boolean[] isVisited) {
+		if (isVisited[v]) {
+			return;
+		}
+
+		GraphNode node = nodes[v];
+		System.out.println("Visited " + v);
+		isVisited[v] = true;
+		if (node != null)
+			for (GraphNode node1 : node.neighbours) {
+				dfs(node1.vertex, isVisited);
+			}
+	}
+
+	public void bfs(int v, boolean[] isVisited) {
+		if (isVisited[v]) {
+			return;
+		}
+
+		GraphNode node = nodes[v];
+		Queue<GraphNode> q = new LinkedList<GraphNode>();
+		q.add(node);
+		while (q.size() > 0) {
+			GraphNode temp = q.poll();
+			System.out.println("Visited " + temp.vertex);
+			isVisited[temp.vertex] = true;
+			for (GraphNode node1 : temp.neighbours) {
+				if (!isVisited[node1.vertex])
+					q.add(node1);
+			}
+		}
+	}
+
+	// FIXME
+	public void topologySorting() {
+
+	}
+
+	// FIXME
+	public boolean isCyclePresent() {
+		return false;
+	}
+
+	public static Graph createGraph(int v, String input) {
+		String[] conn = input.split(",");
 		Graph graph = new Graph(v);
-		for(int i=0;i<conn.length-1;){
-			graph.addEdge(Integer.parseInt(conn[i]), Integer.parseInt(conn[i+1]));
-			i+=2;
+		for (int i = 0; i < conn.length - 1;) {
+			graph.addEdge(Integer.parseInt(conn[i]), Integer.parseInt(conn[i + 1]));
+			i += 2;
 		}
 		return graph;
 	}
+
 	public static void main(String[] args) {
 		String input = "0,1,0,2,1,3";
 		int v = 4;
-		createGraph(v, input).print();
+		Graph graph = createGraph(v, input);
+		graph.print();
+
+		System.out.println("###DFS");
+		graph.dfs(0, new boolean[v]);
+
+		System.out.println("###BFS");
+		graph.bfs(0, new boolean[v]);
+
 	}
-	
-	public String largestNumber(int[] nums) {
-        StringBuilder sb = new StringBuilder();
-        for(int i: nums){
-            sb.append(i);
-        }
-        return sb.toString();
-    }
-    
-    static class CComparator implements Comparator<Integer>{
- 
+
+}
+
+class GraphNode {
+	int vertex;
+	List<GraphNode> neighbours;
+
+	public GraphNode(int vertex) {
+		this.vertex = vertex;
+		neighbours = new ArrayList<>();
+	}
 
 	@Override
-	public int compare(Integer one, Integer two) {
-		int i = Integer.parseInt(one+""+two);
-		int j = Integer.parseInt(two+""+one);
-		
-		return i-j;
+	public String toString() {
+		return "GraphNode [vertex=" + vertex + "]";
 	}
-}
- 
+
 }

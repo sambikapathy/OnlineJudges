@@ -1,7 +1,5 @@
 package problems;
 
-import java.util.ArrayList;
-
 public class Permutations {
 
 	public static void printPerm(String prefix, String input) {
@@ -10,30 +8,36 @@ public class Permutations {
 			return;
 		}
 		for (int i = 0; i < input.length(); i++) {
-			if (i - 1 >= 0)
-				printPerm(prefix + input.charAt(i), input.substring(0, i) + input.substring(i + 1));
-			else
-				printPerm(prefix + input.charAt(i), input.substring(i + 1));
+			printPerm(prefix + input.charAt(i), input.substring(0, i) + input.substring(i + 1));
 		}
-		// prefix+=input.charAt(location);
-		// printPerm(prefix, input, location+1);
 	}
 
-	ArrayList<String> q = new ArrayList<String>();
-
-	public static void printP1(String input) {
-		for (int i = 0; i < input.length(); i++) {
-			char c = input.charAt(i);
-			// for(){
-			//
-			// }
+	public static void printPermBacktrack(String input, int l, int r) {
+		if (l == r) {
+			System.out.println(input);
 		}
+
+		for (int i = l; i < r; i++) {
+			input = swap(input, l, i);
+			printPermBacktrack(input, l + 1, r);
+			input = swap(input, l, i);
+		}
+	}
+
+	private static String swap(String input, int l, int i) {
+		StringBuilder sb = new StringBuilder(input);
+		char c = input.charAt(l);
+		sb.setCharAt(l, sb.charAt(i));
+		sb.setCharAt(i, c);
+		return sb.toString();
 	}
 
 	public static void main(String[] args) {
 
-		String input = "1100";
+		String input = "abc";
 		printPerm("", input);
+		System.out.println("####");
+		printPermBacktrack(input, 0, input.length());
 
 	}
 }

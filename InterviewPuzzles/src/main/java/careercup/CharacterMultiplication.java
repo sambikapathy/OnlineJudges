@@ -25,7 +25,7 @@ public class CharacterMultiplication {
 
 	public static void main(String[] args) {
 		char[][] input = { { 'a', 'b' }, { 'c', 'd' } };
-		char[][] input2 = { { 'a', 'b' }, { 'c', 'd' }, { 'e', 'f' } };
+		char[][] input2 = { { 'a', 'b' }, { 'c', 'd', 'e' }, { 'g', 'f' } };
 
 		List<String> result = new ArrayList<>();
 		multiply(input2, "", 0, result);

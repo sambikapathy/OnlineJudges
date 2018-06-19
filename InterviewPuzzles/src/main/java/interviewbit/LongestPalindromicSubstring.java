@@ -1,35 +1,17 @@
 package interviewbit;
 
+/**
+ * Input: "babad"
+ * 
+ * Output: "bab"
+ * 
+ * Note: "aba" is also a valid answer.
+ * 
+ *
+ */
 public class LongestPalindromicSubstring {
 
 	public String longestPalindrome(String a) {
-
-		int max = -1;
-		String result = "";
-		for (int i = 0; i < a.length(); i++) {
-
-			for (int j = a.length() - 1; j >= i; j--) {
-
-				int s = i, e = j;
-				boolean fail = false;
-				while (s <= e) {
-					if (a.charAt(s) != a.charAt(e)) {
-						fail = true;
-						break;
-					}
-					s++;
-					e--;
-				}
-				if (!fail && max < (j - i)) {
-					max = j - i;
-					result = a.substring(i, j + 1);
-				}
-			}
-		}
-		return result;
-	}
-
-	public String longestPalindrome2(String a) {
 
 		int max = 1;
 		String result = a.charAt(0) + "";
@@ -77,6 +59,6 @@ public class LongestPalindromicSubstring {
 	public static void main(String[] args) {
 
 		String input = "abbcccbbbcaaccbababcbcabca";
-		System.out.println(new LongestPalindromicSubstring().longestPalindrome2(input));
+		System.out.println(new LongestPalindromicSubstring().longestPalindrome(input));
 	}
 }

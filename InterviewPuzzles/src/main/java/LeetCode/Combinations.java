@@ -30,9 +30,10 @@ public class Combinations {
 			return;
 		}
 		for (int i = start; i <= n; i++) {
-			List<Integer> temp1 = new ArrayList<>(temp);
-			temp1.add(i);
-			combine3(n, k, i + 1, temp1, result);
+			// List<Integer> temp1 = new ArrayList<>(temp);
+			temp.add(i);
+			combine3(n, k, i + 1, temp, result);
+			temp.remove(temp.size() - 1);
 		}
 	}
 
