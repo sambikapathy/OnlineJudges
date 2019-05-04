@@ -19,11 +19,6 @@ public class MergeIntervals {
 			start = s;
 			end = e;
 		}
-
-		// [1-4] [2-3]
-		// [1-5] [2-8]
-		// [1-2] [2-3]
-		// [10-20] [2-3]
 		@Override
 		public int compareTo(Interval o) {
 			if (this.start == o.start) {
@@ -35,7 +30,13 @@ public class MergeIntervals {
 	}
 
 	public static List<Interval> merge(List<Interval> intervals) {
-		Collections.sort(intervals);
+		Collections.sort(intervals, (o1, o2) -> {
+			if (o1.start == o2.start) {
+				return o1.end - o2.end;
+			} else {
+				return o1.start - o2.start;
+			}
+		});
 
 		List<Interval> result = new ArrayList<>();
 		Interval start = intervals.get(0);
